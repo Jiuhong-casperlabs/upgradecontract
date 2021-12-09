@@ -1,0 +1,17 @@
+casper-client put-deploy --chain-name casper-test \
+--node-address http://16.162.124.124:7777 \
+--session-path /home/jh/test20/target/wasm32-unknown-unknown/release/messenger_v1_install.wasm \
+--payment-amount 15000000000 \
+ --secret-key /home/jh/keys/jdk2/secret_key.pem
+
+casper-client put-deploy --chain-name casper-test \
+--node-address http://16.162.124.124:7777 \
+--session-path /home/jh/test20/target/wasm32-unknown-unknown/release/messenger_v2_upgrade.wasm \
+--payment-amount 25000000000 \
+ --secret-key /home/jh/keys/jdk2/secret_key.pem
+
+ casper-client put-deploy --chain-name casper-test \
+ --node-address http://16.162.124.124:7777 \
+--session-path /home/jh/test20/target/wasm32-unknown-unknown/release/assert_message.wasm \
+--payment-amount 500000000 \
+ --secret-key /home/jh/keys/jdk2/secret_key.pem

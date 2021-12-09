@@ -1,0 +1,34 @@
+[package]
+name = "messenger"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+casper-contract = "1.4.2"
+casper-types = "1.4.4"
+
+[[bin]]
+name = "messenger_v1_install"
+path = "src/messenger_v1_install.rs"
+bench = false
+doctest = false
+test = false
+
+[[bin]]
+name = "messenger_v2_upgrade"
+path = "src/messenger_v2_upgrade.rs"
+bench = false
+doctest = false
+test = false
+
+[[bin]]
+name = "assert_message"
+path = "src/assert_message.rs"
+bench = false
+doctest = false
+test = false
+
+[profile.release]
+codegen-units = 1
+lto = true
+
