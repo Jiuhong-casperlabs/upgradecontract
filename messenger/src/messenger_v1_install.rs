@@ -6,6 +6,7 @@
 extern crate alloc;
 
 use alloc::{
+    collections::BTreeMap,
     string::{String, ToString},
     vec,
 };
@@ -35,11 +36,14 @@ pub extern "C" fn call() {
         EntryPointType::Contract,
     ));
 
+    let mut named_keys = BTreeMap::new();
+    named_keys.insert("name_v1".to_string(), storage::new_uref("value_v1").into());
+
     // Introduce the contract itself to the account, and save it's package hash and access token
     // to the account's storage as "messenger_package_hash" and "messenger_access_token" respectively.
     let _ = storage::new_contract(
         entry_points,
-        None,
+        Some(named_keys),
         Some("mymessenger_package_hash".to_string()),
         Some("aaa".to_string()),
     );

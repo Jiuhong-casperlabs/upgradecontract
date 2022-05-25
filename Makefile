@@ -4,6 +4,7 @@ prepare:
 build-contract:
 	cargo build -p messenger --release --target wasm32-unknown-unknown
 	wasm-strip contract/target/wasm32-unknown-unknown/release/messenger_v1_install.wasm 2>/dev/null | true
+	wasm-strip contract/target/wasm32-unknown-unknown/release/messenger_v1_disable.wasm 2>/dev/null | true
 	wasm-strip contract/target/wasm32-unknown-unknown/release/messenger_v2_upgrade.wasm 2>/dev/null | true
 	wasm-strip contract/target/wasm32-unknown-unknown/release/assert_message.wasm 2>/dev/null | true
 

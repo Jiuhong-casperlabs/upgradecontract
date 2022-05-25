@@ -15,6 +15,13 @@ doctest = false
 test = false
 
 [[bin]]
+name = "messenger_v1_disable"
+path = "src/messenger_v1_disable.rs"
+bench = false
+doctest = false
+test = false
+
+[[bin]]
 name = "messenger_v2_upgrade"
 path = "src/messenger_v2_upgrade.rs"
 bench = false

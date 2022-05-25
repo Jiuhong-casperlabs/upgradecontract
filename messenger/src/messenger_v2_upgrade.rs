@@ -5,7 +5,7 @@
 // `no_std` environment.
 extern crate alloc;
 
-use alloc::{string::ToString, vec};
+use alloc::{collections::BTreeMap, string::ToString, vec};
 
 use casper_contract::{
     contract_api::{runtime, storage},
@@ -32,6 +32,10 @@ pub extern "C" fn call() {
         EntryPointType::Contract,
     ));
 
+    let mut named_keys = BTreeMap::new();
+    named_keys.insert("name_v2".to_string(), storage::new_uref("value_v2").into());
+    named_keys.insert("name_v3".to_string(), storage::new_uref("value_v3").into());
+
     // Get the package hash of the originally deployed contract.
     let messenger_package_hash = runtime::get_key("mymessenger_package_hash")
         .unwrap_or_revert()
@@ -40,5 +44,5 @@ pub extern "C" fn call() {
         .into();
     // Overwrite the original contract with the new entry points. This works
     // because the original code stored the required access token into the accounts storage.
-    let _ = storage::add_contract_version(messenger_package_hash, entry_points, Default::default());
+    let _ = storage::add_contract_version(messenger_package_hash, entry_points, named_keys);
 }
